@@ -1,0 +1,197 @@
+from sense_hat import SenseHat
+import time
+
+s = SenseHat()
+s.low_light = True
+
+
+#---------------------#
+# CHANGE UPLOAD/DOWNLOAD TO PUB/SUB
+#---------------------#
+
+
+green = (0, 255, 0)
+yellow = (255, 255, 0)
+blue = (0, 0, 255)
+red = (255, 0, 0)
+white = (255,255,255)
+nothing = (0,0,0)
+pink = (255,105, 180)
+
+def not_connected():
+    O = nothing
+    R = red
+    no_connect = [
+    O, O, O, O, O, O, O, O,
+    O, R, R, O, O, R, R, O,
+    O, R, R, R, R, R, R, O,
+    O, O, R, R, R, R, O, O,
+    O, O, R, R, R, R, O, O,
+    O, R, R, R, R, R, R, O,
+    O, R, R, O, O, R, R, O,
+    O, O, O, O, O, O, O, O,
+    ]
+    return no_connect
+
+def raspi_logo():
+    G = green
+    R = red
+    O = nothing
+    logo = [
+    O, G, G, O, O, G, G, O, 
+    O, O, G, G, G, G, O, O,
+    O, O, R, R, R, R, O, O, 
+    O, R, R, R, R, R, R, O,
+    R, R, R, R, R, R, R, R,
+    R, R, R, R, R, R, R, R,
+    O, R, R, R, R, R, R, O,
+    O, O, R, R, R, R, O, O,
+    ]
+    return logo
+
+def uploading_1():
+    G = green
+    O = nothing
+    upload = [
+    O, O, O, O, O, O, O, O, 
+    O, O, O, G, G, O, O, O,
+    O, O, G, G, G, G, O, O, 
+    O, G, G, G, G, G, G, O,
+    O, O, O, G, G, O, O, O,
+    O, O, O, G, G, O, O, O,
+    O, O, O, G, G, O, O, O,
+    O, O, O, O, O, O, O, O,
+    ]
+    return upload
+    
+def uploading_2():
+    G = green
+    O = nothing
+    upload = [
+    O, O, G, G, G, G, O, O, 
+    O, G, G, G, G, G, G, O,
+    O, O, O, G, G, O, O, O, 
+    O, O, O, G, G, O, O, O,
+    O, O, O, G, G, O, O, O,
+    O, O, O, O, O, O, O, O,
+    O, O, O, O, O, O, O, O,
+    O, O, O, G, G, O, O, O,
+    ]
+    return upload
+
+def uploading_3():
+    G = green
+    O = nothing
+    upload = [
+    O, O, O, G, G, O, O, O, 
+    O, O, O, G, G, O, O, O,
+    O, O, O, G, G, O, O, O, 
+    O, O, O, O, O, O, O, O,
+    O, O, O, O, O, O, O, O,
+    O, O, O, G, G, O, O, O,
+    O, O, G, G, G, G, O, O,
+    O, G, G, G, G, G, G, O,
+    ]
+    return upload
+    
+def uploading_4():
+    G = green
+    O = nothing
+    upload = [
+    O, O, O, G, G, O, O, O, 
+    O, O, O, O, O, O, O, O,
+    O, O, O, O, O, O, O, O, 
+    O, O, O, G, G, O, O, O,
+    O, O, G, G, G, G, O, O,
+    O, G, G, G, G, G, G, O,
+    O, O, O, G, G, O, O, O,
+    O, O, O, G, G, O, O, O,
+    ]
+    return upload
+
+def downloading_1():
+    Y = yellow
+    O = nothing
+    download = [
+    O, O, O, O, O, O, O, O, 
+    O, O, O, Y, Y, O, O, O,
+    O, O, O, Y, Y, O, O, O,
+    O, O, O, Y, Y, O, O, O,
+    O, Y, Y, Y, Y, Y, Y, O,
+    O, O, Y, Y, Y, Y, O, O,
+    O, O, O, Y, Y, O, O, O,
+    O, O, O, O, O, O, O, O,
+    ]
+    return download
+
+def downloading_2():
+    Y = yellow
+    O = nothing
+    download = [
+    O, O, O, Y, Y, O, O, O, 
+    O, O, O, O, O, O, O, O,
+    O, O, O, O, O, O, O, O,
+    O, O, O, Y, Y, O, O, O,
+    O, O, O, Y, Y, O, O, O,
+    O, O, O, Y, Y, O, O, O,
+    O, Y, Y, Y, Y, Y, Y, O,
+    O, O, Y, Y, Y, Y, O, O,
+    ]
+    return download
+    
+def downloading_3():
+    Y = yellow
+    O = nothing
+    download = [
+    O, Y, Y, Y, Y, Y, Y, O, 
+    O, O, Y, Y, Y, Y, O, O,
+    O, O, O, Y, Y, O, O, O,
+    O, O, O, O, O, O, O, O,
+    O, O, O, O, O, O, O, O,
+    O, O, O, Y, Y, O, O, O,
+    O, O, O, Y, Y, O, O, O,
+    O, O, O, Y, Y, O, O, O,
+    ]
+    return download
+    
+def downloading_4():
+    Y = yellow
+    O = nothing
+    download = [
+    O, O, O, Y, Y, O, O, O, 
+    O, O, O, Y, Y, O, O, O,
+    O, Y, Y, Y, Y, Y, Y, O,
+    O, O, Y, Y, Y, Y, O, O,
+    O, O, O, Y, Y, O, O, O,
+    O, O, O, O, O, O, O, O,
+    O, O, O, O, O, O, O, O,
+    O, O, O, Y, Y, O, O, O,
+    ]
+    return download
+
+def heart():
+    P = pink
+    O = nothing
+    logo = [
+    O, O, O, O, O, O, O, O,
+    O, P, P, O, P, P, O, O,
+    P, P, P, P, P, P, P, O,
+    P, P, P, P, P, P, P, O,
+    O, P, P, P, P, P, O, O,
+    O, O, P, P, P, O, O, O,
+    O, O, O, P, O, O, O, O,
+    O, O, O, O, O, O, O, O,
+    ]
+    return logo
+
+images = [not_connected, uploading_1, uploading_2, uploading_3, uploading_4, downloading_1, heart, heart]
+uploading_stages = [uploading_1, uploading_2, uploading_3, uploading_4]
+downloading_stages = [downloading_1, downloading_2, downloading_3, downloading_4]
+count = 0
+
+while True: 
+    #s.set_pixels(images[count % len(images)]())
+    #s.set_pixels(uploading_stages[count % len(uploading_stages)]())
+    s.set_pixels(downloading_stages[count % len(downloading_stages)]())
+    time.sleep(0.5)
+    count += 1
