@@ -1,14 +1,18 @@
 from sense_hat import SenseHat
 import subprocess, time
 
+# <---SENSE HAT & COLORS--->
 s = SenseHat()
 s.low_light = True
 
-# currColor lets us use the same animation variable regardless of the status
-#   with us being able to change the color inside a conditional
+"""
+currColor lets us use the same animation variable regardless of the status
+ with us being able to change the color inside a conditional
+"""
 currColor = (0, 0, 0)
 O = (0, 0, 0)
 
+# <---ANIMATION STAGES--->
 def broker_stage_1():
     C = currColor
     bro_stage_1 = [
@@ -52,15 +56,16 @@ def broker_stage_3():
     return bro_stage_3
 
 stages = [broker_stage_1, broker_stage_2, broker_stage_3]
-
 count = 0
 
+# <---MAIN LOGIC--->
 print("running...")
-
 while(True):
     if (count % 15 == 0):
-        # every 30 seconds (count * 1.5) (count starts at 0 so technically first gap is 16 seconds?
-        # checking if mosquitto is working
+        """
+        every 30 seconds (count * 1.5) (count starts at 0 so technically first gap is 16 seconds?
+        checking if mosquitto is working
+        """
         proc = subprocess.Popen('sudo systemctl status mosquitto', shell=True, stdout=subprocess.PIPE, )
         output, errors = proc.communicate()
         output = output.decode("utf-8")
