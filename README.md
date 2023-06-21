@@ -110,7 +110,9 @@ while(True):
     sense.clear()
 ```
 
-RPI subscribe node code
+<h2>RPI subscribe node code</h2>
+
+```
 import paho.mqtt.client as mqtt
 from sense_hat import SenseHat
 import time
@@ -128,7 +130,6 @@ green = (0, 255, 0)
 blue = (0, 0, 255)
 red = (255, 0, 0)
 nothing = (0,0,0)
-
 
 # <---ANIMATION & STAGES--->
 def not_connected():
@@ -180,11 +181,12 @@ sense.clear()
 # <---AUTOMATICALLY RECONNECT/CONNECT--->
 client.connect(mqtt_broker_ip, mqtt_broker_port, 60)
 client.loop_forever()
-</code>
+```
 
-InfluxDB & the TIG Stack (what is run on the subscription “hub” node)
+<h1>InfluxDB & the TIG Stack (what is run on the subscription “hub” node)</h1>
 The RPI subscription node’s Python script does not validate that the data was read into the InfluxDB database but rather solely displays the RPI node’s connectivity to the Mosquitto broker. The data is read into the database via the Telegraf configuration file.
 
+```
 # file is found at /home/tig-rpi/telegraf.conf
 # # Read metrics from MQTT topic(s)
 [[inputs.mqtt_consumer]]
@@ -193,10 +195,11 @@ topics = [
 "sensors/temp",
 ]
 qos = 2
-
+```
 
 While it does not communicate via our Mosquitto broker, we also draw our TTN data from the supplied TTN MQTT broker in the same configuration file.
 
+```
 # file is found at /home/tig-rpi/telegraf.conf
 [[inputs.mqtt_consumer]]
   alias = "thing_network_consumer"
@@ -243,10 +246,11 @@ name_override = "sensor_data"
  [[inputs.mqtt_consumer.json_v2.object]]
   path = "@this.uplink_message.decoded_payload"
   disable_prepend_keys = true
-
+```
 
 I coded a basic bash script that will automatically configure and start all the required TIG stack services that need to be run at startup.
 
+```
 #! /bin/sh
 echo "exporting telegraf API key"
 export INFLUX_TOKEN=BAuKR5TW0Cb21uuGilS3OYmvhNInWeYN7blIsj2135iVFKVx4FMgho0hgxAYxWc_WnJfKgvukxIdUWp0ImW02g==
@@ -256,13 +260,14 @@ export THING_USERNAME=feather-test-01@ttn
 echo $THING_USERNAME
 
 echo "exporting ttn api key {feather test}"
-export THING_API_KEY=NNSXS.GRLSC46G3ILMOM3UZI2QM4WSPJHIY4RETUIGJ4Y.KGODUQD73FEZNJZNKTP2PLK6OSAD577ZHKDSC65ZWZ5AE5KLQXMA
+export THING_API_KEY="key!"
 echo $THING_API_KEY
 
 echo "starting telegraf with key " $INFLUX_TOKEN
 telegraf --debug --config /home/tig-rpi/telegraf.conf
 
 sudo systemctl start influxdb
+```
 
 Example
 [INSERT EXAMPLE HERE]
