@@ -1,7 +1,7 @@
 <h3>Overarching Objective</h3>
 To publish/subscribe to MQTT topics sourced from direct MQTT-capable devices/a TTN MQTT server, and to implement visual indicators of data transfers/connectivity. In addition, the subscribing RPI node catalogs the received data into an InfluxDB database.
 Implementation Details
-<strong>Mosquitto Broker:</strong> a yellow “ripple” design to show that the Mosquitto broker is running successfully with a red “ripple” denoting that the broker is offline.
+<strong>Mosquitto Broker:</strong> a yellow “ripple” design to show that the Mosquitto broker is running successfully with a red “ripple” denoting that the broker is offline.<be>fggssgd</be>
 <strong>RPI Publishing Node:</strong> a green up arrow showing the node is connected to the broker with an “up scroll” animation on actual data upload. A red “X” is displayed if the node is offline or unable to reach the Mosquitto broker.
 <strong>RPI Subscribing Node:</strong> a blue down arrow showing the node is connected to the broker with a “down scroll” animation on actual data reception. A red “X” is displayed if the node is offline or unable to reach the Mosquitto broker.
 MQTT Broker
