@@ -12,6 +12,7 @@ python ~/Desktop/mqtt-broker-status.py
 
 MQTT Publish/Subscribe
 RPI publish node code
+<code>
 import paho.mqtt.client as mqtt
 import paho.mqtt.publish as publish
 from sense_hat import SenseHat
@@ -175,9 +176,7 @@ sense.clear()
 # <---AUTOMATICALLY RECONNECT/CONNECT--->
 client.connect(mqtt_broker_ip, mqtt_broker_port, 60)
 client.loop_forever()
-
-
-
+</code>
 
 InfluxDB & the TIG Stack (what is run on the subscription “hub” node)
 The RPI subscription node’s Python script does not validate that the data was read into the InfluxDB database but rather solely displays the RPI node’s connectivity to the Mosquitto broker. The data is read into the database via the Telegraf configuration file.
