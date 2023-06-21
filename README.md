@@ -13,8 +13,8 @@ sudo systemctl start mosquitto
 python ~/Desktop/mqtt-broker-status.py
 ```
 
-MQTT Publish/Subscribe
-RPI publish node code
+<h3>MQTT Publish/Subscribe</h3>
+<h4>RPI publish node code</h4>
 
 ```
 import paho.mqtt.client as mqtt
@@ -183,7 +183,7 @@ client.connect(mqtt_broker_ip, mqtt_broker_port, 60)
 client.loop_forever()
 ```
 
-<h1>InfluxDB & the TIG Stack (what is run on the subscription “hub” node)</h1>
+<h3>InfluxDB & the TIG Stack (what is run on the subscription “hub” node)</h3>
 The RPI subscription node’s Python script does not validate that the data was read into the InfluxDB database but rather solely displays the RPI node’s connectivity to the Mosquitto broker. The data is read into the database via the Telegraf configuration file.
 
 ```
@@ -269,7 +269,5 @@ telegraf --debug --config /home/tig-rpi/telegraf.conf
 sudo systemctl start influxdb
 ```
 
-Example
+<h3>Example</h3>
 [INSERT EXAMPLE HERE]
-Code
-https://github.com/SethyRoosman/iot-conduit-mqtt 
