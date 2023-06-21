@@ -1,2 +1,267 @@
-# iot-conduit-mqtt
-<html><head><meta content="text/html; charset=UTF-8" http-equiv="content-type"><style type="text/css">@import url(https://themes.googleusercontent.com/fonts/css?kit=cGvuclDC_Z1vE_cnVEU6Ae_NZQ7StBcqH_vXVqoPMX0);ol{margin:0;padding:0}table td,table th{padding:0}.c13{border-right-style:solid;padding:5pt 5pt 5pt 5pt;border-bottom-color:#000000;border-top-width:0pt;border-right-width:0pt;border-left-color:#000000;vertical-align:top;border-right-color:#000000;border-left-width:0pt;border-top-style:solid;background-color:#333333;border-left-style:solid;border-bottom-width:0pt;width:468pt;border-top-color:#000000;border-bottom-style:solid}.c11{color:#434343;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:14pt;font-family:"Arial";font-style:normal}.c1{padding-top:16pt;padding-bottom:4pt;line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}.c22{background-color:#333333;color:#888888;text-decoration:none;vertical-align:baseline;font-size:8pt;font-family:"Consolas";font-style:normal}.c24{padding-top:14pt;padding-bottom:4pt;line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}.c0{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11pt;font-family:"Arial";font-style:normal}.c12{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:8pt;font-family:"Arial";font-style:normal}.c19{color:#666666;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:12pt;font-family:"Arial";font-style:normal}.c4{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c14{background-color:#333333;font-size:8pt;font-family:"Consolas";color:#888888;font-weight:400}.c16{background-color:#333333;font-size:8pt;font-family:"Consolas";color:#d36363;font-weight:400}.c8{background-color:#333333;font-size:8pt;font-family:"Consolas";color:#ffffaa;font-weight:400}.c3{background-color:#333333;font-size:8pt;font-family:"Consolas";color:#ffffff;font-weight:400}.c2{background-color:#333333;font-size:8pt;font-family:"Consolas";color:#a2fca2;font-weight:400}.c20{background-color:#333333;font-size:8pt;font-family:"Consolas";color:#ade5fc;font-weight:400}.c5{background-color:#333333;font-size:8pt;font-family:"Consolas";color:#fcc28c;font-weight:400}.c21{background-color:#333333;font-size:8pt;font-family:"Consolas";color:#fc9b9b;font-weight:400}.c6{border-spacing:0;border-collapse:collapse;margin-right:auto}.c9{padding-top:0pt;padding-bottom:0pt;line-height:1.15;text-align:left}.c25{text-decoration-skip-ink:none;-webkit-text-decoration-skip:none;color:#1155cc;text-decoration:underline}.c23{background-color:#ffffff;max-width:468pt;padding:72pt 72pt 72pt 72pt}.c17{color:inherit;text-decoration:inherit}.c18{background-color:#b7b7b7}.c15{font-weight:700}.c10{height:11pt}.c7{height:0pt}.title{padding-top:0pt;color:#000000;font-size:26pt;padding-bottom:3pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}.subtitle{padding-top:0pt;color:#666666;font-size:15pt;padding-bottom:16pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}li{color:#000000;font-size:11pt;font-family:"Arial"}p{margin:0;color:#000000;font-size:11pt;font-family:"Arial"}h1{padding-top:20pt;color:#000000;font-size:20pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:18pt;color:#000000;font-size:16pt;padding-bottom:6pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:16pt;color:#434343;font-size:14pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:14pt;color:#666666;font-size:12pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}</style></head><body class="c23 doc-content"><h3 class="c1" id="h.rptp70nris32"><span class="c11">Overarching Objective</span></h3><p class="c4"><span class="c0">To publish/subscribe to MQTT topics sourced from direct MQTT-capable devices/a TTN MQTT server, and to implement visual indicators of data transfers/connectivity. In addition, the subscribing RPI node catalogs the received data into an InfluxDB database.</span></p><h3 class="c1" id="h.8m3otej315na"><span class="c11">Implementation Details</span></h3><p class="c4"><span class="c15">Mosquitto Broker: </span><span class="c0">a yellow &ldquo;ripple&rdquo; design to show that the Mosquitto broker is running successfully with a red &ldquo;ripple&rdquo; denoting that the broker is offline.</span></p><p class="c4"><span class="c15">RPI Publishing Node: </span><span class="c0">a green up arrow showing the node is connected to the broker with an &ldquo;up scroll&rdquo; animation on actual data upload. A red &ldquo;X&rdquo; is displayed if the node is offline or unable to reach the Mosquitto broker.</span></p><p class="c4"><span class="c15">RPI Subscribing Node:</span><span class="c0">&nbsp;a blue down arrow showing the node is connected to the broker with a &ldquo;down scroll&rdquo; animation on actual data reception. A red &ldquo;X&rdquo; is displayed if the node is offline or unable to reach the Mosquitto broker.</span></p><h3 class="c1" id="h.korsu0jkyve5"><span class="c11">MQTT Broker</span></h3><p class="c4"><span class="c0">The Mosquitto broker is started using a bash script I wrote that automates the Python script that is run in addition to starting the actual broker service.</span></p><a id="t.d8f96ec6e3324e9ed9aec1d98e4cea14912e0d08"></a><a id="t.0"></a><table class="c6"><tr class="c7"><td class="c13" colspan="1" rowspan="1"><p class="c9"><span class="c21">#! /bin/sh</span><span class="c3"><br>sudo systemctl start mosquitto<br>python ~/Desktop/mqtt-broker-status.py</span></p></td></tr></table><h3 class="c1" id="h.k1f35eyzyqbq"><span class="c11">MQTT Publish/Subscribe</span></h3><h4 class="c24" id="h.3tnl5f799bhf"><span class="c19">RPI publish node code</span></h4><a id="t.d851de1bc209be0c2f655132f25acd72bcd8e2d2"></a><a id="t.1"></a><table class="c6"><tr class="c7"><td class="c13" colspan="1" rowspan="1"><p class="c9"><span class="c5">import</span><span class="c3">&nbsp;paho.mqtt.client </span><span class="c5">as</span><span class="c3">&nbsp;mqtt<br></span><span class="c5">import</span><span class="c3">&nbsp;paho.mqtt.publish </span><span class="c5">as</span><span class="c3">&nbsp;publish<br></span><span class="c5">from</span><span class="c3">&nbsp;sense_hat </span><span class="c5">import</span><span class="c3">&nbsp;SenseHat<br></span><span class="c5">import</span><span class="c3">&nbsp;logging<br></span><span class="c5">import</span><span class="c3">&nbsp;socket<br></span><span class="c5">import</span><span class="c3">&nbsp;time<br><br></span><span class="c14"># &lt;---SENSE HAT // MQTT VARIABLES // LOGGING---&gt;</span><span class="c3"><br>logging.basicConfig()<br>sense = SenseHat()<br>sense.low_light = </span><span class="c5">True</span><span class="c3"><br><br>mqtt_broker_ip = </span><span class="c2">&quot;10.0.2.174&quot;</span><span class="c3"><br>mqtt_broker_port = </span><span class="c16">1883</span><span class="c3"><br>topic_pub = </span><span class="c2">&quot;sensors/temp&quot;</span><span class="c3"><br><br></span><span class="c14"># &lt;---COLORS---&gt;</span><span class="c3"><br>green = (</span><span class="c16">0</span><span class="c3">, </span><span class="c16">255</span><span class="c3">, </span><span class="c16">0</span><span class="c3">)<br>red = (</span><span class="c16">255</span><span class="c3">, </span><span class="c16">0</span><span class="c3">, </span><span class="c16">0</span><span class="c3">)<br>nothing = (</span><span class="c16">0</span><span class="c3">,</span><span class="c16">0</span><span class="c3">,</span><span class="c16">0</span><span class="c3">)<br><br></span><span class="c14"># &lt;---ANIMATION &amp; STAGES---&gt;</span><span class="c3"><br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">not_connected</span><span class="c3">():<br><br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">raspi_logo</span><span class="c3">():<br><br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">publishing_1</span><span class="c3">():<br> &nbsp; &nbsp;<br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">publishing_2</span><span class="c3">():<br><br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">publishing_3</span><span class="c3">():<br> &nbsp; &nbsp;<br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">publishing_4</span><span class="c3">():<br><br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">publish_animation</span><span class="c3">():<br> &nbsp; &nbsp;stages = [publishing_1, publishing_2, publishing_3, publishing_4]<br> &nbsp; &nbsp;</span><span class="c5">for</span><span class="c3">&nbsp;i </span><span class="c5">in</span><span class="c3">&nbsp;range(</span><span class="c16">0</span><span class="c3">, </span><span class="c16">13</span><span class="c3">):<br> &nbsp; &nbsp; &nbsp; &nbsp;sense.set_pixels(stages[i % len(stages)]())<br> &nbsp; &nbsp; &nbsp; &nbsp;time.sleep(</span><span class="c16">0.25</span><span class="c3">)<br><br></span><span class="c14"># &lt;---CALLBACKS &amp; TEMP---&gt;</span><span class="c3"><br></span><span class="c14"># the callback for when the client recieves a CONNACK response from the server</span><span class="c3"><br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">on_connect</span><span class="c3">(client, userdata, flags, rc):<br> &nbsp; &nbsp;print(</span><span class="c2">&quot;Connected with result code &quot;</span><span class="c3">&nbsp;+ str(rc) + </span><span class="c2">&quot; and CONNACK &quot;</span><span class="c3">&nbsp;+ mqtt.connack_string(rc))<br> &nbsp; &nbsp;print(</span><span class="c2">&quot;%s:%d&quot;</span><span class="c3">&nbsp;% (mqtt_broker_ip, mqtt_broker_port))<br> &nbsp; &nbsp;</span><span class="c14"># Subscribing in on_connect() means that if we lose the connection and reconnect,</span><span class="c3"><br> &nbsp; &nbsp;</span><span class="c14"># &nbsp;then subscriptions will be renewed</span><span class="c3"><br> &nbsp; &nbsp;<br></span><span class="c14"># the callback for when a message is published</span><span class="c3"><br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">on_publish</span><span class="c3">(client, userdata, mid):<br> &nbsp; &nbsp;print(</span><span class="c2">&quot;published &quot;</span><span class="c3">&nbsp;+ userdata + </span><span class="c2">&quot; mid &quot;</span><span class="c3">&nbsp;+ mid)<br> &nbsp; &nbsp;<br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">on_disconnect</span><span class="c3">(client, userdata, rc):<br> &nbsp; &nbsp;print(</span><span class="c2">&quot;disconnected&quot;</span><span class="c3">)<br> &nbsp; &nbsp;<br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">c_to_f</span><span class="c3">(c):<br> &nbsp; &nbsp;</span><span class="c5">return</span><span class="c3">&nbsp;(c * (</span><span class="c16">9</span><span class="c3">/</span><span class="c16">5</span><span class="c3">)) + </span><span class="c16">32</span><span class="c3"><br><br></span><span class="c14"># &lt;---MQTT SETUP---&gt;</span><span class="c3"><br>client = mqtt.Client()<br>client.on_connect = on_connect<br>client.on_publish = on_publish<br>client.on_disconnect = on_disconnect<br>client.loop_start()<br><br></span><span class="c14"># &lt;---DISPLAY LOGO &amp; INITIAL CONNECT---&gt;</span><span class="c3"><br>sense.set_pixels(raspi_logo())<br>crc = client.connect(mqtt_broker_ip, mqtt_broker_port, </span><span class="c16">60</span><span class="c3">)<br>print(mqtt.connack_string(crc))<br>time.sleep(</span><span class="c16">5</span><span class="c3">)<br>sense.clear()<br><br></span><span class="c14"># &lt;---MAIN LOGIC---&gt;</span><span class="c3"><br></span><span class="c5">while</span><span class="c3">(</span><span class="c5">True</span><span class="c3">):<br> &nbsp; &nbsp;rc = </span><span class="c2">&quot;&quot;</span><span class="c3"><br> &nbsp; &nbsp;</span><span class="c5">try</span><span class="c3">:<br> &nbsp; &nbsp; &nbsp; &nbsp;client.reconnect()<br> &nbsp; &nbsp; &nbsp; &nbsp;temp = c_to_f(sense.get_temperature_from_pressure())<br> &nbsp; &nbsp; &nbsp; &nbsp;print(</span><span class="c2">&quot;\n%.2f&quot;</span><span class="c3">&nbsp;% temp)<br> &nbsp; &nbsp; &nbsp; &nbsp;influx_line_protocol = </span><span class="c2">&quot;temperature,hostname=&quot;</span><span class="c3">&nbsp;+ socket.gethostname() + </span><span class="c2">&quot; temp=&quot;</span><span class="c3">&nbsp;+ str(temp) + </span><span class="c2">&quot; &quot;</span><span class="c3"><br> &nbsp; &nbsp; &nbsp; &nbsp;print(influx_line_protocol)<br> &nbsp; &nbsp; &nbsp; &nbsp;rc = publish.single(topic_pub, influx_line_protocol, qos=</span><span class="c16">2</span><span class="c3">, hostname=mqtt_broker_ip, port=mqtt_broker_port)<br> &nbsp; &nbsp; &nbsp; &nbsp;publish_animation()<br> &nbsp; &nbsp; &nbsp; &nbsp;print(</span><span class="c2">&quot;sent&quot;</span><span class="c3">)<br> &nbsp; &nbsp; &nbsp; &nbsp;<br> &nbsp; &nbsp; &nbsp; &nbsp;client.disconnect()<br> &nbsp; &nbsp;</span><span class="c5">except</span><span class="c3">&nbsp;Exception </span><span class="c5">as</span><span class="c3">&nbsp;e:<br> &nbsp; &nbsp; &nbsp; &nbsp;print(</span><span class="c2">&quot;\n&quot;</span><span class="c3">&nbsp;+ str(e))<br> &nbsp; &nbsp; &nbsp; &nbsp;sense.set_pixels(not_connected())<br> &nbsp; &nbsp;time.sleep(</span><span class="c16">60</span><span class="c3">)<br> &nbsp; &nbsp;sense.clear()</span></p></td></tr></table><p class="c4 c10"><span class="c0"></span></p><h4 class="c24" id="h.pipx68o9rpch"><span class="c19">RPI subscribe node code</span></h4><a id="t.e72aab1669e6932dd2c3e5febd7b0baa815d37e7"></a><a id="t.2"></a><table class="c6"><tr class="c7"><td class="c13" colspan="1" rowspan="1"><p class="c9"><span class="c5">import</span><span class="c3">&nbsp;paho.mqtt.client </span><span class="c5">as</span><span class="c3">&nbsp;mqtt<br></span><span class="c5">from</span><span class="c3">&nbsp;sense_hat </span><span class="c5">import</span><span class="c3">&nbsp;SenseHat<br></span><span class="c5">import</span><span class="c3">&nbsp;time<br><br></span><span class="c14"># &lt;---SENSE HAT &amp; MQTT VARIABLES---&gt;</span><span class="c3"><br>sense = SenseHat()<br>sense.low_light = </span><span class="c5">True</span><span class="c3"><br><br>mqtt_broker_ip = </span><span class="c2">&quot;10.0.2.174&quot;</span><span class="c3"><br>mqtt_broker_port = </span><span class="c16">1883</span><span class="c3"><br>topic_sub = </span><span class="c2">&quot;sensors/temp&quot;</span><span class="c3"><br><br></span><span class="c14"># &lt;---COLORS---&gt;</span><span class="c3"><br>green = (</span><span class="c16">0</span><span class="c3">, </span><span class="c16">255</span><span class="c3">, </span><span class="c16">0</span><span class="c3">)<br>blue = (</span><span class="c16">0</span><span class="c3">, </span><span class="c16">0</span><span class="c3">, </span><span class="c16">255</span><span class="c3">)<br>red = (</span><span class="c16">255</span><span class="c3">, </span><span class="c16">0</span><span class="c3">, </span><span class="c16">0</span><span class="c3">)<br>nothing = (</span><span class="c16">0</span><span class="c3">,</span><span class="c16">0</span><span class="c3">,</span><span class="c16">0</span><span class="c3">)<br><br><br></span><span class="c14"># &lt;---ANIMATION &amp; STAGES---&gt;</span><span class="c3"><br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">not_connected</span><span class="c3">():<br><br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">raspi_logo</span><span class="c3">():<br><br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">subscribing_1</span><span class="c3">():<br><br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">subscribing_2</span><span class="c3">():<br> &nbsp; &nbsp;<br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">subscribing_3</span><span class="c3">():<br> &nbsp; &nbsp;<br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">subscribing_4</span><span class="c3">():<br><br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">subscribe_animation</span><span class="c3">():<br> &nbsp; &nbsp;stages = [subscribing_1, subscribing_2, subscribing_3, subscribing_4]<br> &nbsp; &nbsp;</span><span class="c5">for</span><span class="c3">&nbsp;i </span><span class="c5">in</span><span class="c3">&nbsp;range(</span><span class="c16">0</span><span class="c3">, </span><span class="c16">13</span><span class="c3">):<br> &nbsp; &nbsp; &nbsp; &nbsp;sense.set_pixels(stages[i % len(stages)]())<br> &nbsp; &nbsp; &nbsp; &nbsp;time.sleep(</span><span class="c16">0.25</span><span class="c3">)<br><br></span><span class="c14"># &lt;---CALLBACKS---&gt;</span><span class="c3"><br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">on_connect</span><span class="c3">(client, userdata, flags, rc):<br> &nbsp; &nbsp;print(</span><span class="c2">&quot;Connected with result code &quot;</span><span class="c3">&nbsp;+ str(rc))<br> &nbsp; &nbsp;print(</span><span class="c2">&quot;please note that this polls mqtt messages but does NOT verify\nthat the data was saved in InfluxDB via Telegraf&quot;</span><span class="c3">)<br> &nbsp; &nbsp;print(</span><span class="c2">&quot;%s:%d&quot;</span><span class="c3">&nbsp;% (mqtt_broker_ip, mqtt_broker_port))<br> &nbsp; &nbsp;</span><span class="c14"># this will provide redundancy as if/when the connection is lost and renewed we will re-subscribe automatically</span><span class="c3"><br> &nbsp; &nbsp;client.subscribe(</span><span class="c2">&quot;sensors/temp&quot;</span><span class="c3">)<br> &nbsp; &nbsp;sense.clear()<br> &nbsp; &nbsp;<br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">on_disconnect</span><span class="c3">(client, userdata, rc):<br> &nbsp; &nbsp;print(</span><span class="c2">&quot;disconnected&quot;</span><span class="c3">)<br> &nbsp; &nbsp;sense.set_pixels(not_connected())<br> &nbsp; &nbsp;<br></span><span class="c5">def</span><span class="c3">&nbsp;</span><span class="c8">on_message</span><span class="c3">(client, userdata, msg):<br> &nbsp; &nbsp;print(</span><span class="c2">&quot;message &#39;%s&#39;\n\thas been recieved successfully&quot;</span><span class="c3">&nbsp;% msg.payload)<br> &nbsp; &nbsp;subscribe_animation()<br><br></span><span class="c14"># &lt;---MQTT SETUP---&gt;</span><span class="c3"><br>client = mqtt.Client()<br>client.on_connect = on_connect<br>client.on_disconnect = on_disconnect<br>client.on_message = on_message<br><br></span><span class="c14"># &lt;---DISPLAY LOGO---&gt;</span><span class="c3"><br>sense.set_pixels(raspi_logo())<br>time.sleep(</span><span class="c16">5</span><span class="c3">)<br>sense.clear()<br><br></span><span class="c14"># &lt;---AUTOMATICALLY RECONNECT/CONNECT---&gt;</span><span class="c3"><br>client.connect(mqtt_broker_ip, mqtt_broker_port, </span><span class="c16">60</span><span class="c3">)<br>client.loop_forever()<br></span></p></td></tr></table><p class="c4 c10"><span class="c0"></span></p><h3 class="c1" id="h.j5qb0v98p2tb"><span class="c11">InfluxDB &amp; the TIG Stack (what is run on the subscription &ldquo;hub&rdquo; node)</span></h3><p class="c4"><span>The RPI subscription node&rsquo;s Python script does not validate that the data was read into the InfluxDB database but rather solely displays the RPI node&rsquo;s connectivity to the Mosquitto broker. The data is read into the database via the Telegraf </span><span>configuration file.</span></p><p class="c4 c10"><span class="c12 c18"></span></p><a id="t.7a83a694bcf1433b617aac7de470a1ed865ec495"></a><a id="t.3"></a><table class="c6"><tr class="c7"><td class="c13" colspan="1" rowspan="1"><p class="c9"><span class="c14"># file is found at </span><span class="c15 c22">/home/tig-rpi/telegraf.conf</span></p><p class="c9"><span class="c14"># # Read metrics from MQTT topic(s)</span><span class="c3"><br>[[inputs.mqtt_consumer]]<br>servers = [</span><span class="c2">&quot;tcp://10.0.2.174:1883&quot;</span><span class="c3">]<br>topics = [<br></span><span class="c2">&quot;sensors/temp&quot;</span><span class="c3">,<br>]<br></span><span class="c3">qos</span><span class="c3">&nbsp;= 2</span></p></td></tr></table><p class="c4 c10"><span class="c0"></span></p><p class="c4"><span class="c0">While it does not communicate via our Mosquitto broker, we also draw our TTN data from the supplied TTN MQTT broker in the same configuration file.</span></p><p class="c4 c10"><span class="c0"></span></p><a id="t.cf9c3363eaa78eed97d0f1d393a88d3971d98867"></a><a id="t.4"></a><table class="c6"><tr class="c7"><td class="c13" colspan="1" rowspan="1"><p class="c9"><span class="c14"># file is found at /home/tig-rpi/telegraf.conf</span><span class="c3"><br>[[inputs.mqtt_consumer]]<br> &nbsp;alias = </span><span class="c2">&quot;thing_network_consumer&quot;</span><span class="c3"><br> &nbsp;name_override = </span><span class="c2">&quot;thing_network&quot;</span><span class="c3"><br> &nbsp;servers = [</span><span class="c2">&quot;tcp://nam1.cloud.thethings.network:1883&quot;</span><span class="c3">]<br> &nbsp;topics = [</span><span class="c2">&quot;#&quot;</span><span class="c3">]<br> &nbsp;max_undelivered_messages = </span><span class="c16">1</span><span class="c3"><br><br> &nbsp; &nbsp;username = </span><span class="c2">&quot;$THING_USERNAME&quot;</span><span class="c3"><br> &nbsp; &nbsp;password = </span><span class="c2">&quot;$THING_API_KEY&quot;</span><span class="c3">&nbsp;<br> &nbsp; &nbsp;data_format = </span><span class="c2">&quot;json_v2&quot;</span><span class="c3"><br><br> &nbsp;[[inputs.mqtt_consumer.json_v2]]<br> &nbsp; &nbsp;[[inputs.mqtt_consumer.json_v2.tag]]<br> &nbsp; &nbsp;path = </span><span class="c2">&quot;@this.end_device_ids.device_id&quot;</span><span class="c3"><br><br> &nbsp;[[inputs.mqtt_consumer.json_v2.object]]<br> &nbsp; &nbsp;path = </span><span class="c2">&quot;end_device_ids&quot;</span><span class="c3"><br> &nbsp; &nbsp;disable_prepend_keys = true<br><br> &nbsp;[[inputs.mqtt_consumer.json_v2.object]]<br> &nbsp; &nbsp;path = </span><span class="c2">&quot;uplink_message&quot;</span><span class="c3"><br> &nbsp; &nbsp;disable_prepend_keys = true<br> &nbsp; &nbsp;excluded_keys = [</span><span class="c2">&quot;time&quot;</span><span class="c3">, </span><span class="c2">&quot;timestamp&quot;</span><span class="c3">]<br><br> &nbsp;[[inputs.mqtt_consumer.json_v2.object]]<br> &nbsp; &nbsp;path = </span><span class="c2">&quot;uplink_message.rx_metadata&quot;</span><span class="c3"><br> &nbsp; &nbsp;disable_prepend_keys = true<br> &nbsp; &nbsp;excluded_keys = [</span><span class="c2">&quot;time&quot;</span><span class="c3">, </span><span class="c2">&quot;timestamp&quot;</span><span class="c3">]<br><br></span><span class="c14"># data thang</span><span class="c3"><br>[[inputs.mqtt_consumer]]<br>alias = </span><span class="c2">&quot;thing_network_consumer2&quot;</span><span class="c3"><br>name_override = </span><span class="c2">&quot;sensor_data&quot;</span><span class="c3"><br><br> &nbsp;servers = [</span><span class="c2">&quot;tcp://nam1.cloud.thethings.network:1883&quot;</span><span class="c3">]<br> &nbsp;topics = [</span><span class="c2">&quot;#&quot;</span><span class="c3">]<br><br> &nbsp;username = </span><span class="c2">&quot;$THING_USERNAME&quot;</span><span class="c3"><br> &nbsp;password = </span><span class="c2">&quot;$THING_API_KEY&quot;</span><span class="c3">&nbsp;<br> &nbsp;data_format = </span><span class="c2">&quot;json_v2&quot;</span><span class="c3"><br><br> [[inputs.mqtt_consumer.json_v2]]<br> [[inputs.mqtt_consumer.json_v2.object]]<br> &nbsp;path = </span><span class="c2">&quot;@this.uplink_message.decoded_payload&quot;</span><span class="c3"><br> &nbsp;disable_prepend_keys = true</span></p></td></tr></table><p class="c4 c10"><span class="c0"></span></p><p class="c4"><span class="c0">I coded a basic bash script that will automatically configure and start all the required TIG stack services that need to be run at startup.</span></p><p class="c4 c10"><span class="c0"></span></p><a id="t.c86ed2e581314e50a7ebcb809d29b7e4979f0d3b"></a><a id="t.5"></a><table class="c6"><tr class="c7"><td class="c13" colspan="1" rowspan="1"><p class="c9"><span class="c21">#! /bin/sh</span><span class="c3"><br></span><span class="c8">echo</span><span class="c3">&nbsp;</span><span class="c2">&quot;exporting telegraf API key&quot;</span><span class="c3"><br></span><span class="c8">export</span><span class="c3">&nbsp;INFLUX_TOKEN=BAuKR5TW0Cb21uuGilS3OYmvhNInWeYN7blIsj2135iVFKVx4FMgho0hgxAYxWc_WnJfKgvukxIdUWp0ImW02g==<br><br></span><span class="c8">echo</span><span class="c3">&nbsp;</span><span class="c2">&quot;exporting </span><span class="c2">ttn</span><span class="c2">&nbsp;username&quot;</span><span class="c3"><br></span><span class="c8">export</span><span class="c3">&nbsp;THING_USERNAME=feather-test-01@ttn<br></span><span class="c8">echo</span><span class="c3">&nbsp;</span><span class="c20">$THING_USERNAME</span><span class="c3"><br><br></span><span class="c8">echo</span><span class="c3">&nbsp;</span><span class="c2">&quot;exporting </span><span class="c2">ttn</span><span class="c2">&nbsp;api key {feather test}&quot;</span><span class="c3"><br></span><span class="c8">export</span><span class="c3">&nbsp;THING_API_KEY=NNSXS.GRLSC46G3ILMOM3UZI2QM4WSPJHIY4RETUIGJ4Y.KGODUQD73FEZNJZNKTP2PLK6OSAD577ZHKDSC65ZWZ5AE5KLQXMA<br></span><span class="c8">echo</span><span class="c3">&nbsp;</span><span class="c20">$THING_API_KEY</span><span class="c3"><br><br></span><span class="c8">echo</span><span class="c3">&nbsp;</span><span class="c2">&quot;starting telegraf with key &quot;</span><span class="c3">&nbsp;</span><span class="c20">$INFLUX_TOKEN</span><span class="c3"><br>telegraf --debug --config /home/tig-rpi/telegraf.conf<br><br>sudo systemctl start influxdb</span></p></td></tr></table><h3 class="c1" id="h.cc1q826o43g8"><span class="c11">Example</span></h3><p class="c4"><span>[INSERT EXAMPLE HERE]</span></p><h3 class="c1" id="h.5vdfd4u1t0l4"><span class="c11">Code</span></h3><p class="c4"><span class="c25"><a class="c17" href="https://www.google.com/url?q=https://github.com/SethyRoosman/iot-conduit-mqtt&amp;sa=D&amp;source=editors&amp;ust=1687377596477970&amp;usg=AOvVaw1jGeBvjFFw7Q43F5jWMV5E">https://github.com/SethyRoosman/iot-conduit-mqtt</a></span><span class="c0">&nbsp;</span></p></body></html>
+Overarching Objective
+To publish/subscribe to MQTT topics sourced from direct MQTT-capable devices/a TTN MQTT server, and to implement visual indicators of data transfers/connectivity. In addition, the subscribing RPI node catalogs the received data into an InfluxDB database.
+Implementation Details
+Mosquitto Broker: a yellow “ripple” design to show that the Mosquitto broker is running successfully with a red “ripple” denoting that the broker is offline.
+RPI Publishing Node: a green up arrow showing the node is connected to the broker with an “up scroll” animation on actual data upload. A red “X” is displayed if the node is offline or unable to reach the Mosquitto broker.
+RPI Subscribing Node: a blue down arrow showing the node is connected to the broker with a “down scroll” animation on actual data reception. A red “X” is displayed if the node is offline or unable to reach the Mosquitto broker.
+MQTT Broker
+The Mosquitto broker is started using a bash script I wrote that automates the Python script that is run in addition to starting the actual broker service.
+#! /bin/sh
+sudo systemctl start mosquitto
+python ~/Desktop/mqtt-broker-status.py
+
+MQTT Publish/Subscribe
+RPI publish node code
+import paho.mqtt.client as mqtt
+import paho.mqtt.publish as publish
+from sense_hat import SenseHat
+import logging
+import socket
+import time
+
+# <---SENSE HAT // MQTT VARIABLES // LOGGING--->
+logging.basicConfig()
+sense = SenseHat()
+sense.low_light = True
+
+mqtt_broker_ip = "10.0.2.174"
+mqtt_broker_port = 1883
+topic_pub = "sensors/temp"
+
+# <---COLORS--->
+green = (0, 255, 0)
+red = (255, 0, 0)
+nothing = (0,0,0)
+
+# <---ANIMATION & STAGES--->
+def not_connected():
+
+def raspi_logo():
+
+def publishing_1():
+    
+def publishing_2():
+
+def publishing_3():
+    
+def publishing_4():
+
+def publish_animation():
+    stages = [publishing_1, publishing_2, publishing_3, publishing_4]
+    for i in range(0, 13):
+        sense.set_pixels(stages[i % len(stages)]())
+        time.sleep(0.25)
+
+# <---CALLBACKS & TEMP--->
+# the callback for when the client recieves a CONNACK response from the server
+def on_connect(client, userdata, flags, rc):
+    print("Connected with result code " + str(rc) + " and CONNACK " + mqtt.connack_string(rc))
+    print("%s:%d" % (mqtt_broker_ip, mqtt_broker_port))
+    # Subscribing in on_connect() means that if we lose the connection and reconnect,
+    #  then subscriptions will be renewed
+    
+# the callback for when a message is published
+def on_publish(client, userdata, mid):
+    print("published " + userdata + " mid " + mid)
+    
+def on_disconnect(client, userdata, rc):
+    print("disconnected")
+    
+def c_to_f(c):
+    return (c * (9/5)) + 32
+
+# <---MQTT SETUP--->
+client = mqtt.Client()
+client.on_connect = on_connect
+client.on_publish = on_publish
+client.on_disconnect = on_disconnect
+client.loop_start()
+
+# <---DISPLAY LOGO & INITIAL CONNECT--->
+sense.set_pixels(raspi_logo())
+crc = client.connect(mqtt_broker_ip, mqtt_broker_port, 60)
+print(mqtt.connack_string(crc))
+time.sleep(5)
+sense.clear()
+
+# <---MAIN LOGIC--->
+while(True):
+    rc = ""
+    try:
+        client.reconnect()
+        temp = c_to_f(sense.get_temperature_from_pressure())
+        print("\n%.2f" % temp)
+        influx_line_protocol = "temperature,hostname=" + socket.gethostname() + " temp=" + str(temp) + " "
+        print(influx_line_protocol)
+        rc = publish.single(topic_pub, influx_line_protocol, qos=2, hostname=mqtt_broker_ip, port=mqtt_broker_port)
+        publish_animation()
+        print("sent")
+        
+        client.disconnect()
+    except Exception as e:
+        print("\n" + str(e))
+        sense.set_pixels(not_connected())
+    time.sleep(60)
+    sense.clear()
+
+
+RPI subscribe node code
+import paho.mqtt.client as mqtt
+from sense_hat import SenseHat
+import time
+
+# <---SENSE HAT & MQTT VARIABLES--->
+sense = SenseHat()
+sense.low_light = True
+
+mqtt_broker_ip = "10.0.2.174"
+mqtt_broker_port = 1883
+topic_sub = "sensors/temp"
+
+# <---COLORS--->
+green = (0, 255, 0)
+blue = (0, 0, 255)
+red = (255, 0, 0)
+nothing = (0,0,0)
+
+
+# <---ANIMATION & STAGES--->
+def not_connected():
+
+def raspi_logo():
+
+def subscribing_1():
+
+def subscribing_2():
+    
+def subscribing_3():
+    
+def subscribing_4():
+
+def subscribe_animation():
+    stages = [subscribing_1, subscribing_2, subscribing_3, subscribing_4]
+    for i in range(0, 13):
+        sense.set_pixels(stages[i % len(stages)]())
+        time.sleep(0.25)
+
+# <---CALLBACKS--->
+def on_connect(client, userdata, flags, rc):
+    print("Connected with result code " + str(rc))
+    print("please note that this polls mqtt messages but does NOT verify\nthat the data was saved in InfluxDB via Telegraf")
+    print("%s:%d" % (mqtt_broker_ip, mqtt_broker_port))
+    # this will provide redundancy as if/when the connection is lost and renewed we will re-subscribe automatically
+    client.subscribe("sensors/temp")
+    sense.clear()
+    
+def on_disconnect(client, userdata, rc):
+    print("disconnected")
+    sense.set_pixels(not_connected())
+    
+def on_message(client, userdata, msg):
+    print("message '%s'\n\thas been recieved successfully" % msg.payload)
+    subscribe_animation()
+
+# <---MQTT SETUP--->
+client = mqtt.Client()
+client.on_connect = on_connect
+client.on_disconnect = on_disconnect
+client.on_message = on_message
+
+# <---DISPLAY LOGO--->
+sense.set_pixels(raspi_logo())
+time.sleep(5)
+sense.clear()
+
+# <---AUTOMATICALLY RECONNECT/CONNECT--->
+client.connect(mqtt_broker_ip, mqtt_broker_port, 60)
+client.loop_forever()
+
+
+
+
+InfluxDB & the TIG Stack (what is run on the subscription “hub” node)
+The RPI subscription node’s Python script does not validate that the data was read into the InfluxDB database but rather solely displays the RPI node’s connectivity to the Mosquitto broker. The data is read into the database via the Telegraf configuration file.
+
+# file is found at /home/tig-rpi/telegraf.conf
+# # Read metrics from MQTT topic(s)
+[[inputs.mqtt_consumer]]
+servers = ["tcp://10.0.2.174:1883"]
+topics = [
+"sensors/temp",
+]
+qos = 2
+
+
+While it does not communicate via our Mosquitto broker, we also draw our TTN data from the supplied TTN MQTT broker in the same configuration file.
+
+# file is found at /home/tig-rpi/telegraf.conf
+[[inputs.mqtt_consumer]]
+  alias = "thing_network_consumer"
+  name_override = "thing_network"
+  servers = ["tcp://nam1.cloud.thethings.network:1883"]
+  topics = ["#"]
+  max_undelivered_messages = 1
+
+    username = "$THING_USERNAME"
+    password = "$THING_API_KEY" 
+    data_format = "json_v2"
+
+  [[inputs.mqtt_consumer.json_v2]]
+    [[inputs.mqtt_consumer.json_v2.tag]]
+    path = "@this.end_device_ids.device_id"
+
+  [[inputs.mqtt_consumer.json_v2.object]]
+    path = "end_device_ids"
+    disable_prepend_keys = true
+
+  [[inputs.mqtt_consumer.json_v2.object]]
+    path = "uplink_message"
+    disable_prepend_keys = true
+    excluded_keys = ["time", "timestamp"]
+
+  [[inputs.mqtt_consumer.json_v2.object]]
+    path = "uplink_message.rx_metadata"
+    disable_prepend_keys = true
+    excluded_keys = ["time", "timestamp"]
+
+# data thang
+[[inputs.mqtt_consumer]]
+alias = "thing_network_consumer2"
+name_override = "sensor_data"
+
+  servers = ["tcp://nam1.cloud.thethings.network:1883"]
+  topics = ["#"]
+
+  username = "$THING_USERNAME"
+  password = "$THING_API_KEY" 
+  data_format = "json_v2"
+
+ [[inputs.mqtt_consumer.json_v2]]
+ [[inputs.mqtt_consumer.json_v2.object]]
+  path = "@this.uplink_message.decoded_payload"
+  disable_prepend_keys = true
+
+
+I coded a basic bash script that will automatically configure and start all the required TIG stack services that need to be run at startup.
+
+#! /bin/sh
+echo "exporting telegraf API key"
+export INFLUX_TOKEN=BAuKR5TW0Cb21uuGilS3OYmvhNInWeYN7blIsj2135iVFKVx4FMgho0hgxAYxWc_WnJfKgvukxIdUWp0ImW02g==
+
+echo "exporting ttn username"
+export THING_USERNAME=feather-test-01@ttn
+echo $THING_USERNAME
+
+echo "exporting ttn api key {feather test}"
+export THING_API_KEY=NNSXS.GRLSC46G3ILMOM3UZI2QM4WSPJHIY4RETUIGJ4Y.KGODUQD73FEZNJZNKTP2PLK6OSAD577ZHKDSC65ZWZ5AE5KLQXMA
+echo $THING_API_KEY
+
+echo "starting telegraf with key " $INFLUX_TOKEN
+telegraf --debug --config /home/tig-rpi/telegraf.conf
+
+sudo systemctl start influxdb
+
+Example
+[INSERT EXAMPLE HERE]
+Code
+https://github.com/SethyRoosman/iot-conduit-mqtt 
