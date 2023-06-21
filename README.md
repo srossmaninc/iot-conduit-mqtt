@@ -6,13 +6,17 @@ RPI Publishing Node: a green up arrow showing the node is connected to the broke
 RPI Subscribing Node: a blue down arrow showing the node is connected to the broker with a “down scroll” animation on actual data reception. A red “X” is displayed if the node is offline or unable to reach the Mosquitto broker.
 MQTT Broker
 The Mosquitto broker is started using a bash script I wrote that automates the Python script that is run in addition to starting the actual broker service.
+
+```
 #! /bin/sh
 sudo systemctl start mosquitto
 python ~/Desktop/mqtt-broker-status.py
+```
 
 MQTT Publish/Subscribe
 RPI publish node code
-<code>
+
+```
 import paho.mqtt.client as mqtt
 import paho.mqtt.publish as publish
 from sense_hat import SenseHat
@@ -104,7 +108,7 @@ while(True):
         sense.set_pixels(not_connected())
     time.sleep(60)
     sense.clear()
-
+```
 
 RPI subscribe node code
 import paho.mqtt.client as mqtt
