@@ -11,7 +11,7 @@ To publish/subscribe to MQTT topics sourced from direct MQTT-capable devices/a T
 <h3>MQTT Broker</h3>
 The Mosquitto broker is started using a bash script I wrote that automates the Python script that is run in addition to starting the actual broker service.
 
-```
+```sh
 #! /bin/sh
 sudo systemctl start mosquitto
 python ~/Desktop/mqtt-broker-status.py
@@ -190,7 +190,7 @@ client.loop_forever()
 <h3>InfluxDB & the TIG Stack (what is run on the subscription “hub” node)</h3>
 The RPI subscription node’s Python script does not validate that the data was read into the InfluxDB database but rather solely displays the RPI node’s connectivity to the Mosquitto broker. The data is read into the database via the Telegraf configuration file.
 
-```
+```sh
 # file is found at /home/tig-rpi/telegraf.conf
 # # Read metrics from MQTT topic(s)
 [[inputs.mqtt_consumer]]
@@ -203,7 +203,7 @@ qos = 2
 
 While it does not communicate via our Mosquitto broker, we also draw our TTN data from the supplied TTN MQTT broker in the same configuration file.
 
-```
+```sh
 # file is found at /home/tig-rpi/telegraf.conf
 [[inputs.mqtt_consumer]]
   alias = "thing_network_consumer"
@@ -254,7 +254,7 @@ name_override = "sensor_data"
 
 I coded a basic bash script that will automatically configure and start all the required TIG stack services that need to be run at startup.
 
-```
+```sh
 #! /bin/sh
 echo "exporting telegraf API key"
 export INFLUX_TOKEN="toke"
