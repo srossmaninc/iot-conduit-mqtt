@@ -110,7 +110,7 @@ while(True):
     sense.clear()
 ```
 
-<h2>RPI subscribe node code</h2>
+<h3>RPI subscribe node code</h3>
 
 ```
 import paho.mqtt.client as mqtt
