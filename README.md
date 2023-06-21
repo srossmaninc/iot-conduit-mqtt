@@ -20,7 +20,7 @@ python ~/Desktop/mqtt-broker-status.py
 <h3>MQTT Publish/Subscribe</h3>
 <h4>RPI publish node code</h4>
 
-```
+```python
 import paho.mqtt.client as mqtt
 import paho.mqtt.publish as publish
 from sense_hat import SenseHat
@@ -116,7 +116,7 @@ while(True):
 
 <h4>RPI subscribe node code</h4>
 
-```
+```python
 import paho.mqtt.client as mqtt
 from sense_hat import SenseHat
 import time
