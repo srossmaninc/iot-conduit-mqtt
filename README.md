@@ -257,7 +257,7 @@ I coded a basic bash script that will automatically configure and start all the 
 ```
 #! /bin/sh
 echo "exporting telegraf API key"
-export INFLUX_TOKEN=BAuKR5TW0Cb21uuGilS3OYmvhNInWeYN7blIsj2135iVFKVx4FMgho0hgxAYxWc_WnJfKgvukxIdUWp0ImW02g==
+export INFLUX_TOKEN="toke"
 
 echo "exporting ttn username"
 export THING_USERNAME=feather-test-01@ttn
