@@ -31,6 +31,6 @@ while(True):
     else:
         currColor = (255, 0, 0)
         
-    s.set_pixels(stages[count % len(stages)]())
+    s.set_pixels(stages[count % len(stages)])
     time.sleep(1.5) # sleep for 1.5 seconds
     count += 1

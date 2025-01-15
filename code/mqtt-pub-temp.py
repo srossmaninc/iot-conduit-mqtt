@@ -21,10 +21,12 @@ mqtt_broker_ip = config['mqtt']['ip']
 mqtt_broker_port = config['mqtt']['port']
 topic_pub = config['mqtt']['topic']
 
+node_name = config['node-name']
+
 def publish_animation():
     stages = sym.pub_stages
     for i in range(0, 13):
-        sense.set_pixels(stages[i % len(stages)]())
+        sense.set_pixels(stages[i % len(stages)])
         time.sleep(0.25)
 
 # <---CALLBACKS & TEMP--->
@@ -59,15 +61,28 @@ print(mqtt.connack_string(crc))
 time.sleep(5)
 sense.clear()
 
+# makes this more modular
+def get_sensor_reading():
+    temp = c_to_f(sense.get_temperature_from_pressure())
+    return temp
+
+# <measurement>,<tag(s)> <field> <ts (generated automatically if not provided)>
+def influx_line_builder(measurement, node_name, sensor_type, val):
+    #"temperature,hostname=" + socket.gethostname() + " temp=" + str(temp) + " "
+    return f"{measurement},node_name={node_name},sensor_type={sensor_type} {val}"
+
 # <---MAIN LOGIC--->
 while(True):
     rc = ""
     try:
         client.reconnect()
-        
-        temp = c_to_f(sense.get_temperature_from_pressure())
-        print("\n%.2f" % temp)
-        influx_line_protocol = "temperature,hostname=" + socket.gethostname() + " temp=" + str(temp) + " "
+
+        poll_val = get_sensor_reading()
+        measurement = config['influxdb']["temperature"]
+        sensor_type = config['influxdb']["example-sensors"]
+        print("\n%.2f" % poll_val)
+
+        influx_line_protocol = influx_line_builder(measurement, node_name, sensor_type, poll_val)
         print(influx_line_protocol)
         rc = publish.single(topic_pub, influx_line_protocol, qos=2, hostname=mqtt_broker_ip, port=mqtt_broker_port)
         publish_animation()

@@ -4,4 +4,8 @@ node-name: "ex"
 mqtt:
   ip: "10.0.2.174"
   port: 1883
-  topic: "sensors/temp""
+  topic: "sensors/temp"
+
+influxdb:
+  measurement: "temperature"
+  sensor_type: "example-sensors"
